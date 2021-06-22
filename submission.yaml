@@ -1,10 +1,11 @@
 # challenge name(s); defaults to all compatible challenges
 # challenge: [c1,c2]
+challenge:
+- aido-LF*state*
 
 # conventions + format
 protocol: aido5-db20-state-z2
 # any user label - displayed in "challenges list"
-user-label: "simple-yield"
+user-label: "baseline-simple-yield"
 # any JSON payload
 user-payload: {}
-

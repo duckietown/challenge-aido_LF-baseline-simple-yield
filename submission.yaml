@@ -4,7 +4,7 @@
 # conventions + format
 protocol: aido5-db20-state-z2
 # any user label - displayed in "challenges list"
-user-label: "simple-yield"
+user-label: "baseline-simple-yield"
 # any JSON payload
 user-payload: {}
 

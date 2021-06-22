@@ -1,6 +1,6 @@
 
 build:
-	dts build_utils aido-container-build --use-branch daffy --ignore-untagged
+	dts build_utils aido-container-build --use-branch daffy --ignore-untagged --push
 
 push: build
 	dts build_utils aido-container-push --use-branch daffy
@@ -22,3 +22,4 @@ evaluate-LFV_multi:
 
 evaluate-LFVI_multi:
 	dts challenges evaluate --challenge aido-LFVI_multi_full-sim-validation
+

@@ -1,0 +1,24 @@
+{
+  "install_requires": [
+    "aido-agents-daffy",
+    "duckietown-world-daffy"
+  ],
+  "tests_require": [],
+  "srcdir": "src",
+  "package_name": "gtduckie",
+  "entry_points": {
+    "console_scripts": []
+  },
+  "zip_safe": true,
+  "include_package_data": true,
+  "modules": [
+    "gtduckie",
+    "gtduckie.agents",
+    "gtduckie.controllers",
+    "gtduckie.maps"
+  ],
+  "version": "7.1.2106241539",
+  "author": "",
+  "author_email": "",
+  "url": ""
+}

@@ -17,9 +17,15 @@ def get_version(filename):
     return version
 
 
+line = "daffy"
 install_requires = [
-    "duckietown-world-daffy",
-    "aido-agents-daffy"
+    f"duckietown-world-{line}",
+    f"aido-agents-{line}",
+    "PyContracts3",
+    f"aido-protocols-{line}",
+    "zuper-commons-z6",
+    "PyYAML",
+    "numpy",
 ]
 
 module = "gtduckie"
@@ -31,7 +37,7 @@ version = get_version(filename=f"src/{module}/__init__.py")
 setup(
     name=package,
     package_dir={"": src},
-    packages=find_packages('src'),
+    packages=find_packages("src"),
     version=version,
     zip_safe=False,
     install_requires=install_requires,

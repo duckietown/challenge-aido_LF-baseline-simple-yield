@@ -26,6 +26,9 @@ install_requires = [
     "zuper-commons-z6",
     "PyYAML",
     "numpy",
+    "matplotlib",
+    "PyGeometry-z6",
+    "scipy",
 ]
 
 module = "gtduckie"

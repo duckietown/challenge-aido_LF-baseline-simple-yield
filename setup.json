@@ -1,7 +1,15 @@
 {
   "install_requires": [
+    "PyContracts3",
+    "PyGeometry-z6",
+    "PyYAML",
     "aido-agents-daffy",
-    "duckietown-world-daffy"
+    "aido-protocols-daffy",
+    "duckietown-world-daffy",
+    "matplotlib",
+    "numpy",
+    "scipy",
+    "zuper-commons-z6"
   ],
   "tests_require": [],
   "srcdir": "src",

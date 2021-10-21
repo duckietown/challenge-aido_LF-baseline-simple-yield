@@ -70,9 +70,8 @@ class PurePursuit:
 
         min_along_path = self.along_path + self.param.min_distance
 
-        bounds = [min_along_path,
-                  min_along_path + self.param.look_ahead + self.param.max_extra_distance]
-        res = scipy.optimize.minimize_scalar(fun=goal_point_error, bounds=bounds, method='Bounded')
+        bounds = [min_along_path, min_along_path + self.param.look_ahead + self.param.max_extra_distance]
+        res = scipy.optimize.minimize_scalar(fun=goal_point_error, bounds=bounds, method="Bounded")
         goal_point = self.path.center_point(self.path.beta_from_along_lane(res.x))
         return res.x, goal_point
 
@@ -97,4 +96,4 @@ class PurePursuit:
         p_goal, theta_goal = translation_angle_from_SE2(goal_point)
         alpha = theta - np.arctan2(p_goal[1] - p[1], p_goal[0] - p[0])
         radius = self.param.look_ahead / (2 * sin(alpha))
-        return - self.param.k_turn2pwm * self.speed / radius
+        return -self.param.k_turn2pwm * self.speed / radius

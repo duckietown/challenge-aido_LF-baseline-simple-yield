@@ -22,7 +22,7 @@ def test_lane_to_follow():
     print(f"Loading {map_name}")
     m = dw.load_map("robotarium2")
     sk = dw.get_skeleton_graph(m)
-    ipython_draw_html(m);
+    ipython_draw_html(m)
 
     q = sample_good_starting_pose(m, only_straight=False, along_lane=0.02)
     print(SE2Transform.from_SE2(q))
@@ -33,11 +33,8 @@ def test_lane_to_follow():
     ctr_points = glpr.lane_segment.control_points
     abs_ctr_points = []
     for ctr_point in ctr_points:
-        abs_point = SE2Transform.from_SE2(
-            glpr.lane_segment_transform.asmatrix2d().m @ ctr_point.as_SE2())
-        abs_ctr_points.append(
-            abs_point
-        )
+        abs_point = SE2Transform.from_SE2(glpr.lane_segment_transform.asmatrix2d().m @ ctr_point.as_SE2())
+        abs_ctr_points.append(abs_point)
 
     print(ctr_points)
     print(abs_ctr_points)
@@ -45,7 +42,7 @@ def test_lane_to_follow():
     print("looking for a match of ", abs_ctr_points[-1])
     for node_id, node in sk.G.nodes.items():
         print("candidate: ", node["point"])
-        if np.allclose(node["point"].p, abs_ctr_points[-1].p, rtol=1.e-3):
+        if np.allclose(node["point"].p, abs_ctr_points[-1].p, rtol=1.0e-3):
             ctr_point_id = node_id
             print(node["point"].theta)
             print(abs_ctr_points[-1].theta)

@@ -33,7 +33,9 @@ class SpeedController:
     def update_reference(self, desired_speed: float):
         if not self.params.setpoint_minmax[0] <= desired_speed <= self.params.setpoint_minmax[1]:
             raise RuntimeWarning("Attempting to set a desired speed out of range. I'll clip the value.")
-        self.desired_speed = np.clip(desired_speed, self.params.setpoint_minmax[0], self.params.setpoint_minmax[1])
+        self.desired_speed = np.clip(
+            desired_speed, self.params.setpoint_minmax[0], self.params.setpoint_minmax[1]
+        )
 
     def get_control(self, at: float) -> float:
         "A simple PI"
@@ -41,9 +43,9 @@ class SpeedController:
         self.last_request_at = at
         p_error = self.desired_speed - self.current_speed
         self.last_integral_error += self.params.kI * p_error * dt
-        self.last_integral_error = np.clip(self.last_integral_error,
-                                           self.params.antiwindup[0],
-                                           self.params.antiwindup[1])
+        self.last_integral_error = np.clip(
+            self.last_integral_error, self.params.antiwindup[0], self.params.antiwindup[1]
+        )
         return self.params.kP * p_error + self.last_integral_error
 
 
@@ -56,6 +58,7 @@ class SpeedBehaviorParam:
 
 class SpeedBehavior:
     """Determines the reference speed"""
+
     duckiebots: Dict[str, DTSimRobotInfo]
     last_speed_ref: float = 0
 
@@ -84,13 +87,15 @@ class SpeedBehavior:
         for dk_name, dk_sim_robot in self.duckiebots.items():
             if dk_name == self.myname:
                 pass
-            rel = SE2Transform.from_SE2(relative_pose(
-                self.duckiebots[self.myname].pose, self.duckiebots[dk_name].pose))
+            rel = SE2Transform.from_SE2(
+                relative_pose(self.duckiebots[self.myname].pose, self.duckiebots[dk_name].pose)
+            )
 
             distance = np.linalg.norm(rel.p)
             coming_from_the_right: bool = pi / 4 <= rel.theta <= pi * 3 / 4
             in_front_of_me: bool = rel.p[0] > 0 and -pi / 4 <= rel.theta <= pi / 4
             if (coming_from_the_right and distance < self.params.safety_dist_right) or (
-                    in_front_of_me and distance < self.params.safety_dist_front):
+                in_front_of_me and distance < self.params.safety_dist_front
+            ):
                 return True
         return False

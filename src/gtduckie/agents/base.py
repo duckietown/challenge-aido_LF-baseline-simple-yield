@@ -4,8 +4,7 @@ from typing import cast, Optional, Tuple
 import numpy as np
 import yaml
 
-from aido_schemas import (Context, DB20ObservationsOnlyState, EpisodeStart,
-                          GetCommands)
+from aido_schemas import Context, DB20ObservationsOnlyState, EpisodeStart, GetCommands
 from duckietown_world import construct_map, DuckietownMap
 
 __all__ = ["FullAgentBase"]
@@ -39,7 +38,7 @@ class FullAgentBase(ABC):
 
     def init_observations(self, context: Context, data: DB20ObservationsOnlyState):
         self.myname = data.your_name
-        context.info(f'Myname is {self.myname}')
+        context.info(f"Myname is {self.myname}")
         if self.dtmap is None:
             context.info("Loading map")
             yaml_str = cast(str, data.map_data)

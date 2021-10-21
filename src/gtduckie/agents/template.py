@@ -9,7 +9,6 @@ from .base import FullAgentBase
 
 
 class FullAgent(FullAgentBase):
-
     def on_received_observations(self, context: Context, data: DB20ObservationsPlusState):
         if self.is_first_callback:
             self.init_observations(context=context, data=data)

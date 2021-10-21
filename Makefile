@@ -19,4 +19,3 @@ evaluate-LFV_multi:
 
 evaluate-LFVI_multi:
 	dts challenges evaluate --challenge aido-LFVI_multi_full-sim-validation
-

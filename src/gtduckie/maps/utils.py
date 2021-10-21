@@ -16,16 +16,11 @@ def merge_lanes(lanes: List[LaneSegment]) -> LaneSegment:
     width = lanes[0].width
     # Make a list of all the control points, while making sure that the points that overlap are only taken once
     contr_points_lanes = list(
-        it.chain(
-            *[ls.control_points[:-1] if ls is not lanes[-1]
-              else ls.control_points for ls in lanes]
-        )
+        it.chain(*[ls.control_points[:-1] if ls is not lanes[-1] else ls.control_points for ls in lanes])
     )
 
     # Creating a unified lane segment
-    merged_lane_segments = dw.LaneSegment(
-        width=width, control_points=contr_points_lanes
-    )
+    merged_lane_segments = dw.LaneSegment(width=width, control_points=contr_points_lanes)
     return merged_lane_segments
 
 

@@ -3,8 +3,14 @@ from typing import Optional
 
 import numpy as np
 
-from aido_schemas import (Context, DB20Commands, DB20ObservationsOnlyState, DB20ObservationsPlusState,
-                          GetCommands, PWMCommands)
+from aido_schemas import (
+    Context,
+    DB20Commands,
+    DB20ObservationsOnlyState,
+    DB20ObservationsPlusState,
+    GetCommands,
+    PWMCommands,
+)
 from duckietown_world import get_lane_poses, GetLanePoseResult, relative_pose
 from gtduckie.controllers import LedsController, PurePursuit, SpeedBehavior, SpeedController
 from .base import FullAgentBase
@@ -27,16 +33,15 @@ class MyFullAgent(FullAgentBase):
         self.mypose = data.state.duckiebots[self.myname].pose
         self.speed_behavior.update_observations(data.state.duckiebots)
         self.speed_controller.update_observations(
-            current_velocity=data.state.duckiebots[self.myname].velocity)
+            current_velocity=data.state.duckiebots[self.myname].velocity
+        )
 
         # update lane position
         self.update_get_lane_pose_result()
         if self.myglpr is not None:
             self.pure_pursuit.update_path(self.myglpr.lane_segment)
             rel = relative_pose(self.myglpr.lane_segment_transform.asmatrix2d().m, self.mypose)
-            self.pure_pursuit.update_pose(
-                rel,
-                self.myglpr.lane_pose.along_lane)
+            self.pure_pursuit.update_pose(rel, self.myglpr.lane_pose.along_lane)
 
     def on_received_get_commands(self, context: Context, data: GetCommands):
         t0 = time.time()

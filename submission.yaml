@@ -9,3 +9,4 @@ protocol: aido5-db20-state-z2
 user-label: "baseline-simple-yield"
 # any JSON payload
 user-payload: {}
+validation_challenge: aido-hello-sim-state-validation

@@ -1,0 +1,4 @@
+VERSION=6.2.0
+TYPE=template-aido
+TYPE_VERSION=3
+CONTAINER_TARGET=duckietown/challenge-aido_lf-baseline-simple-yield:daffy
